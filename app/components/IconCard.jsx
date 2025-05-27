@@ -19,21 +19,26 @@ export default function IconCard({ iconName }) {
   };
 
   // Extract just the filename
-  const shortName = iconName.split("/").pop()?.replace(".svg", "");
+  const shortName = iconName
+    .split("/")
+    .pop()
+    ?.replace(".svg", "")
+    .replace(/[\s-]+/g, "-") // replace multiple spaces/hyphens with single dash
+    .replace(/^-+|-+$/g, "") // trim leading/trailing dashes;
+    .toLowerCase();
 
   return (
     <div
-      className="flex flex-col gap-1.5 items-center justify-center text-center bg-slate-100 p-4 rounded-lg cursor-pointer border border-slate-100 hover:bg-blue-50 hover:border-blue-200 ease-in-out duration-300 group"
+      className="flex flex-col min-h-[120px] gap-2 items-center justify-center text-center bg-slate-100 p-4 rounded-lg cursor-pointer border border-slate-100 hover:bg-blue-50 hover:border-blue-200 ease-in-out duration-300 group"
       onClick={handleCopy}
     >
-      <img src={`/icons/${iconName}`} alt={shortName} className="w-6 h-6" />
+      <img src={`/icons/${iconName}`} alt={shortName} className="w-auto h-7" />
       <p
         className={`text-xs leading-tight text-slate-800 mt-1 group-hover:text-blue-500 ${
-          copied &&
-          "text-emerald-600 group-hover:text-emerald-600 ease-in-out duration-300"
+          copied && "text-emerald-600 group-hover:text-emerald-600 ease-in-out duration-300"
         }`}
       >
-        {copied ? "✅ Copied!" : shortName.replace(/\s+/g, "-").toLowerCase()}
+        {copied ? "✅ Copied!" : shortName}
       </p>
     </div>
   );

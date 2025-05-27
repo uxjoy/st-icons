@@ -6,7 +6,6 @@
     "start": "next start",
     "dev": "next dev",
     "build": "next build",
-    "generate:icons": "node generate-icons.js",
     "lint": "next lint"
   },
   "dependencies": {
