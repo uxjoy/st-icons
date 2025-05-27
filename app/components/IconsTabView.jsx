@@ -17,7 +17,7 @@ export default function IconsTabView({ iconsByCategory }) {
 
   return (
     <div className="flex h-full">
-      <div className="sidebar min-w-[248px] bg-white border-r border-slate-100 overflow-y-auto no-scrollbar">
+      <div className="sidebar min-w-[248px] bg-white border-r border-slate-100 overflow-y-auto no-scrollbar hidden sm:block">
         <div className="logo flex items-end gap-2 px-4 py-6 sticky top-0 z-10 bg-gradient-to-b from-white to-white/20 backdrop-blur-sm ">
           <img src="logo.svg" alt="ShareTrip" className="h-10 w-auto" />
           <p className="text-slate-600">Icons</p>
@@ -53,13 +53,13 @@ export default function IconsTabView({ iconsByCategory }) {
 
         <div className="p-5 pt-2">
           {filteredIcons.length > 0 ? (
-            <div className="grid md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-12 gap-3">
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-12 gap-2 sm:gap-3">
               {filteredIcons.map((iconPath) => (
                 <IconCard key={iconPath} iconName={iconPath} />
               ))}
             </div>
           ) : (
-            <p className="text-gray-500 text-sm">No icons found in "{activeTab}"</p>
+            <p className="text-gray-500 text-sm">Opps, No icons found!</p>
           )}
         </div>
       </div>
