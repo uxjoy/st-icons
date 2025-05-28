@@ -13,3 +13,11 @@ body {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+button {
+  cursor: pointer;
+}
+
+p {
+  margin-bottom: 0;
+}

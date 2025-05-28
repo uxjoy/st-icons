@@ -7,21 +7,15 @@ import SearchIcon from "./SearchIcon";
 
 export default function IconsTabView({ iconsByCategory }) {
   const categoryNames = Object.keys(iconsByCategory);
-  const allIcons = useMemo(
-    () => categoryNames.flatMap((category) => iconsByCategory[category]),
-    [iconsByCategory]
-  );
+  const allIcons = useMemo(() => categoryNames.flatMap((category) => iconsByCategory[category]), [iconsByCategory]);
 
   const [activeTab, setActiveTab] = useState("all");
   const [search, setSearch] = useState("");
   const topRef = useRef(null);
 
-  const currentIcons =
-    activeTab === "all" ? allIcons : iconsByCategory[activeTab] || [];
+  const currentIcons = activeTab === "all" ? allIcons : iconsByCategory[activeTab] || [];
 
-  const filteredIcons = currentIcons.filter((iconPath) =>
-    iconPath.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredIcons = currentIcons.filter((iconPath) => iconPath.toLowerCase().includes(search.toLowerCase()));
 
   const tabs = ["all", ...categoryNames];
 
@@ -50,10 +44,8 @@ export default function IconsTabView({ iconsByCategory }) {
             <button
               key={category}
               onClick={handleTabClick.bind(null, category)}
-              className={`px-4 py-2 text-left capitalize rounded text-sm cursor-pointer ease-in-out duration-200 hover:pl-5.5 ${
-                activeTab === category
-                  ? "bg-black text-white"
-                  : " text-slate-600 hover:bg-slate-100"
+              className={`px-4 py-2 text-left capitalize rounded-md text-sm cursor-pointer ease-in-out duration-200 hover:pl-5.5 ${
+                activeTab === category ? "bg-black text-white" : "text-slate-600 hover:bg-slate-100"
               }`}
             >
               <span> {category.replace("-", " ")} </span>
@@ -74,7 +66,7 @@ export default function IconsTabView({ iconsByCategory }) {
 
         <div className="p-5 pt-2 h-full">
           {filteredIcons.length > 0 ? (
-            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-12 gap-2 sm:gap-3">
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-12 gap-2 sm:gap-3 pb-6">
               {filteredIcons.map((iconPath) => (
                 <IconCard key={iconPath} iconName={iconPath} />
               ))}
