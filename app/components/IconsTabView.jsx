@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Empty from "./Empty";
 import IconCard from "./IconCard";
 import SearchIcon from "./SearchIcon";
 
@@ -62,8 +63,8 @@ export default function IconsTabView({ iconsByCategory }) {
         </div>
       </div>
 
-      <div className="main-area w-full h-full overflow-y-auto" ref={topRef}>
-        <div className="sticky top-0 z-10 bg-gradient-to-b from-white to-90% px-5 py-4">
+      <div className="flex flex-col w-full h-full overflow-y-auto" ref={topRef}>
+        <div className="stick top-0 z-10 bg-gradient-to-b from-white to-90% px-5 py-4">
           <SearchIcon
             searchVlaue={search}
             iconLength={filteredIcons.length}
@@ -71,7 +72,7 @@ export default function IconsTabView({ iconsByCategory }) {
           />
         </div>
 
-        <div className="p-5 pt-2">
+        <div className="p-5 pt-2 h-full">
           {filteredIcons.length > 0 ? (
             <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-12 gap-2 sm:gap-3">
               {filteredIcons.map((iconPath) => (
@@ -79,7 +80,7 @@ export default function IconsTabView({ iconsByCategory }) {
               ))}
             </div>
           ) : (
-            <p className="text-gray-500 text-sm">Opps, No icons found!</p>
+            <Empty />
           )}
         </div>
       </div>
