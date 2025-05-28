@@ -13,7 +13,11 @@ const SearchIcon = ({ searchVlaue, iconLength, changeHandler }) => {
         Download All Icons
       </button>
 
-      <img src="logo.svg" alt="ShareTrip" className="h-7 pr-3 mb-0.5" />
+      <img
+        src="logo.svg"
+        alt="ShareTrip"
+        className="h-7 pr-3 mb-0.5  sm:hidden"
+      />
     </div>
   );
 };
