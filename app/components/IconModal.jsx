@@ -19,7 +19,7 @@ export default function IconModal({ iconPath, onClose }) {
   const copyToClipboard = async (text, label) => {
     try {
       await navigator.clipboard.writeText(text);
-      setCopied(`Copied ${label}`);
+      setCopied(`Copied as ${label}`);
       setTimeout(() => setCopied(""), 2000);
     } catch (err) {
       console.error(err);
@@ -50,7 +50,7 @@ export default function IconModal({ iconPath, onClose }) {
         canvas.toBlob(async (blob) => {
           try {
             await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
-            setCopied("Copied PNG (512x512)");
+            setCopied("Copied as PNG (512x512)");
             setTimeout(() => setCopied(""), 2000);
           } catch (err) {
             console.error("Clipboard error:", err);
@@ -112,9 +112,9 @@ export default function IconModal({ iconPath, onClose }) {
   if (typeof document === "undefined") return null;
 
   return createPortal(
-    <div className="fixed inset-0 bg-slate-950/60 z-50 flex items-center justify-center" onClick={onClose}>
+    <div className="fixed inset-0 bg-slate-950/60 z-50 flex items-center justify-center p-3" onClick={onClose}>
       <div
-        className="bg-white rounded-xl shadow-xl w-[460px] p-8 relative overflow-hidden"
+        className="bg-emerald-100 rounded-xl shadow-xl w-[460px] relative overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -124,7 +124,7 @@ export default function IconModal({ iconPath, onClose }) {
           <span> ✕ </span>
         </button>
 
-        <div className="modal-body space-y-6">
+        <div className="modal-body space-y-6 p-8 bg-white rounded-xl shadow">
           <div className="flex items-center gap-4">
             <div
               className="w-18 h-18 bg-slate-50 flex items-center justify-center rounded-lg border border-slate-200 overflow-hidden"
@@ -143,20 +143,20 @@ export default function IconModal({ iconPath, onClose }) {
               }}
             />
 
-            <div className="flex flex-col gap-1">
-              <p className="text-slate-800 font-medium flex items-center gap-2">
+            <div className="flex flex-col gap-0.5">
+              <p className="text-slate-800 font-semibold flex items-center gap-2">
                 <span className="cursor-pointer" onClick={() => copyToClipboard(iconName, "Name")}>
                   {iconName} 📋
                 </span>
-                {copied && (
+                {/* {copied && (
                   <span className="text-emerald-600 text-xs bg-emerald-100 p-0.5 px-1.5 rounded-full">{copied}</span>
-                )}
+                )} */}
               </p>
               <p className="text-sm text-slate-600"> {iconPath.split("/")[0]}</p>
             </div>
           </div>
 
-          <div className="flex gap-2 items-center mt-2 text-slate-800" ref={svgWrapperRef}>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-slate-800" ref={svgWrapperRef}>
             {/* <button
                 onClick={() => copyToClipboard(iconName, "name")}
                 className="bg-slate-200 px-3 py-1.5 rounded-md hover:bg-slate-300 text-sm ease-in-out duration-200"
@@ -180,11 +180,19 @@ export default function IconModal({ iconPath, onClose }) {
 
             <button
               onClick={downloadAsPNG}
-              className="bg-slate-800 text-white w-full px-3 py-1.5 rounded-md w-grow hover:bg-slate-950 text-sm ease-in-out duration-200"
+              className="bg-slate-800 col-span-2 sm:col-span-1 text-white w-full px-3 py-1.5 rounded-md hover:bg-slate-950 text-sm ease-in-out duration-200"
             >
               Download PNG
             </button>
           </div>
+        </div>
+
+        <div
+          className={`font-medium text-emerald-600 text-xs text-center transition ease-in-out duration-300  ${
+            copied && "py-1.5"
+          }`}
+        >
+          {copied}
         </div>
       </div>
     </div>,
