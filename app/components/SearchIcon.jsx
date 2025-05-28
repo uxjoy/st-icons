@@ -43,7 +43,7 @@ const SearchIcon = ({ searchVlaue, iconLength, changeHandler }) => {
         className="w-full h-14 border px-5 py-2 font-normal placeholder:text-slate-400 border-none focus:outline-none focus:ring-0 focus:border-none"
       />
 
-      <button
+      {/* <button
         className={`min-w-[148px] flex-none text-sm py-2 mr-2.5 rounded font-medium ease-in-out duration-200 cursor-pointer hidden sm:block ${
           loading
             ? "bg-slate-300 text-slate-600 cursor-not-allowed"
@@ -53,13 +53,9 @@ const SearchIcon = ({ searchVlaue, iconLength, changeHandler }) => {
         onClick={handleDownload}
       >
         {loading ? "Preparing ZIP..." : "Download All Icons"}
-      </button>
+      </button> */}
 
-      <img
-        src="logo.svg"
-        alt="ShareTrip"
-        className="h-7 pr-3 mb-0.5  sm:hidden"
-      />
+      <img src="logo.svg" alt="ShareTrip" className="h-7 pr-3 mb-0.5  sm:hidden" />
     </div>
   );
 };
