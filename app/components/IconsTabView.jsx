@@ -64,7 +64,7 @@ export default function IconsTabView({ iconsByCategory }) {
       </div>
 
       <div className="flex flex-col w-full h-full overflow-y-auto" ref={topRef}>
-        <div className="stick top-0 z-10 bg-gradient-to-b from-white to-90% px-5 py-4">
+        <div className="sticky top-0 z-10 bg-gradient-to-b from-white to-90% px-5 py-4">
           <SearchIcon
             searchVlaue={search}
             iconLength={filteredIcons.length}
