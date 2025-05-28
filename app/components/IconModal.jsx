@@ -138,7 +138,7 @@ export default function IconModal({ iconPath, onClose }) {
                   .replace(/<svg([^>]*)>/, (_match, attrs) => {
                     const hasViewBox = /viewBox="[^"]*"/.test(attrs);
                     const viewBoxAttr = hasViewBox ? "" : ' viewBox="0 0 24 24"';
-                    return `<svg${attrs}${viewBoxAttr} width="60%" height="60%" preserveAspectRatio="xMidYMid meet" stroke-width="1.5">`;
+                    return `<svg${attrs}${viewBoxAttr} width="60%" height="60%" preserveAspectRatio="xMidYMid meet" stroke-width="2">`;
                   }),
               }}
             />
