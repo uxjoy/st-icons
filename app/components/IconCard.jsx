@@ -19,13 +19,7 @@ export default function IconCard({ iconName }) {
   };
 
   // Extract just the filename
-  const shortName = iconName
-    .split("/")
-    .pop()
-    ?.replace(".svg", "")
-    .replace(/[\s-]+/g, "-") // replace multiple spaces/hyphens with single dash
-    .replace(/^-+|-+$/g, "") // trim leading/trailing dashes;
-    .toLowerCase();
+  const shortName = iconName.split("/").pop()?.replace(".svg", "");
 
   return (
     <div
@@ -35,7 +29,8 @@ export default function IconCard({ iconName }) {
       <img src={`/icons/${iconName}`} alt={shortName} className="w-auto h-7" />
       <p
         className={`text-xs leading-tight text-slate-800 mt-1 group-hover:text-blue-500 ${
-          copied && "text-emerald-600 group-hover:text-emerald-600 ease-in-out duration-300"
+          copied &&
+          "text-emerald-600 group-hover:text-emerald-600 ease-in-out duration-300"
         }`}
       >
         {copied ? "✅ Copied!" : shortName}

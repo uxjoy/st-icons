@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 body {
-  font-family: "Geist", sans-serif;
+  scroll-behavior: smooth;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

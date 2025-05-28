@@ -1,19 +1,40 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import IconCard from "./IconCard";
 import SearchIcon from "./SearchIcon";
 
 export default function IconsTabView({ iconsByCategory }) {
   const categoryNames = Object.keys(iconsByCategory);
-  const allIcons = useMemo(() => categoryNames.flatMap((category) => iconsByCategory[category]), [iconsByCategory]);
+  const allIcons = useMemo(
+    () => categoryNames.flatMap((category) => iconsByCategory[category]),
+    [iconsByCategory]
+  );
 
   const [activeTab, setActiveTab] = useState("all");
   const [search, setSearch] = useState("");
+  const topRef = useRef(null);
 
-  const currentIcons = activeTab === "all" ? allIcons : iconsByCategory[activeTab] || [];
-  const filteredIcons = currentIcons.filter((iconPath) => iconPath.toLowerCase().includes(search.toLowerCase()));
+  const currentIcons =
+    activeTab === "all" ? allIcons : iconsByCategory[activeTab] || [];
+
+  const filteredIcons = currentIcons.filter((iconPath) =>
+    iconPath.toLowerCase().includes(search.toLowerCase())
+  );
+
   const tabs = ["all", ...categoryNames];
+
+  const handleTabClick = (category) => {
+    setActiveTab(category);
+    setSearch("");
+  };
+
+  // Scroll the icon grid to top on tab change
+  useEffect(() => {
+    if (topRef.current) {
+      topRef.current.scrollTop = 0;
+    }
+  }, [activeTab]);
 
   return (
     <div className="flex h-full">
@@ -27,23 +48,22 @@ export default function IconsTabView({ iconsByCategory }) {
           {tabs.map((category) => (
             <button
               key={category}
-              onClick={() => {
-                setActiveTab(category);
-                setSearch("");
-              }}
-              className={`px-4 py-2 text-left capitalize rounded text-sm cursor-pointer ease-in-out duration-200 hover:pl-6 ${
-                activeTab === category ? "bg-black text-white" : " text-slate-600 hover:bg-slate-100"
+              onClick={handleTabClick.bind(null, category)}
+              className={`px-4 py-2 text-left capitalize rounded text-sm cursor-pointer ease-in-out duration-200 hover:pl-5.5 ${
+                activeTab === category
+                  ? "bg-black text-white"
+                  : " text-slate-600 hover:bg-slate-100"
               }`}
             >
-              <span> {category} </span>
+              <span> {category.replace("-", " ")} </span>
               {/* <span className="text-slate-400 font-normal"> ({filteredIcons.length}) </span> */}
             </button>
           ))}
         </div>
       </div>
 
-      <div className="main-area w-full h-full overflow-y-auto">
-        <div className="sticky top-0 z-10 bg-gradient-to-b from-white to-white/20 px-5 py-4">
+      <div className="main-area w-full h-full overflow-y-auto" ref={topRef}>
+        <div className="sticky top-0 z-10 bg-gradient-to-b from-white to-90% px-5 py-4">
           <SearchIcon
             searchVlaue={search}
             iconLength={filteredIcons.length}
