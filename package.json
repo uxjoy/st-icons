@@ -6,7 +6,8 @@
     "start": "next start",
     "dev": "next dev",
     "build": "next build",
-    "lint": "next lint"
+    "lint": "next lint",
+    "icon": "node scripts/lowercase-icons.js && node scripts/normalize-icons.js"
   },
   "dependencies": {
     "@remixicon/react": "^4.6.0",
