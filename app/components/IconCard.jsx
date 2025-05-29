@@ -26,7 +26,7 @@ export default function IconCard({ iconName }) {
   return (
     <>
       <div
-        className="flex flex-col min-h-[120px] gap-2 items-center justify-center text-center bg-slate-100 p-4 rounded-lg cursor-pointer border border-slate-100 hover:bg-blue-50 hover:border-blue-200 ease-in-out duration-300 group"
+        className="flex flex-col min-h-[120px] gap-2 items-center justify-center text-center bg-slate-100 p-4 rounded-lg cursor-pointer border border-slate-100 hover:bg-blue-50 hover:border-blue-200 ease-in-out duration-200 group scale-100 hover:scale-90"
         onClick={() => setOpen(true)}
       >
         <img src={`/icons/${iconName}`} alt={shortName} className="w-auto h-7" />
