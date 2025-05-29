@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@remixicon/react": "^4.6.0",
     "archiver": "^7.0.1",
     "next": "15.3.0",
     "react": "^19.0.0",
